@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+<style>
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flex-container > div {
+  width: calc(33.33% - 3em);
+  margin: 1em;
+  text-align: center;
+  line-height: 15px;
+  font-size: 13px;
+  border:1px solid;
+  border: 1px solid grey;
+  box-sizing: border-box;
+  padding: 1em;
+}
+
+button{
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<div class="flex-container">
+    {% for row in data %}
+  <div>
+    <h4>{{ row.name }}</h4>
+    <p>{{ row.description }}</p>
+    <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ url_for('edit_cat', id = row.id) }}';">Edit category</button>
+    <button type="button" class="btn btn-danger" onclick="window.location.href = '{{ url_for('delete_cat', id = row.id) }}';">Delete category</button>
+  </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

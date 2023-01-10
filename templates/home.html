@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="text-center">Hi, I am clippy. Use me to organize your notes</h1>
+
+  <div class="text-center">
+    <img src="{{ url_for('static', filename='clippy.png') }}" alt="Clippy" style="width: 400px; height: 400px;">
+  </div>
+{% endblock %}

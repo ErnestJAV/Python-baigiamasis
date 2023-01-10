@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Add a Note</legend>
+            <div class="form-group">
+                {{ form.description.label(class="form-control-label") }}
+                {% if form.description.errors %}
+                {{ form.description(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.description.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.description(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+
+    <div class="mb-3" >
+
+
+</div>
+
+<div class="mb-3">
+    <label class="form-label">{{ form.text.label}}</label>
+
+  <textarea class="form-control" id="{{ form.text }} </textarea>
+</div>
+            <div class="form-group">
+                {{ form.groups.label}}
+                {{ form.groups(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.image.label}}
+                {{ form.image(class="form-control") }}
+            </div>
+            <br>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+
+{% if form.image.data %}
+  <img src="{{ url_for('static', filename='uploads/' + form.image.data) }}">
+{% endif %}
+
+{% endblock %}

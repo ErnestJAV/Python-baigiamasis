@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+<style>
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.flex-container > div {
+
+  width: calc(50% - 3em);
+  margin: 1em;
+  text-align: center;
+  line-height: 15px;
+  font-size: 13px;
+  border:1px solid;
+   border: 1px solid grey;
+   box-sizing: border-box;
+   height: 100px;
+}
+a {
+  color: maroon;
+  margin-left: 40px;
+
+}
+</style>
+</head>
+
+
+<h2>Edit Note</h2>
+<form method="POST">
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" name="description" value="{{ note.description }}">
+    </div>
+    <div class="form-group">
+        <label for="text">Text</label>
+        <textarea class="form-control" id="text" name="text" rows="3">{{ note.text }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" id="category" name="category">
+            {% for category in categories %}
+                <option value="{{ category.id }}" {% if category.id == note.group_id %}selected{% endif %}>{{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+
+
+
+{% endblock %}
